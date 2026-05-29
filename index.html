@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>虫スパ - デッキ構築型ローグライク試作</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Deckbuilding Roguelike Prototype</p>
+          <h1>虫スパ</h1>
+        </div>
+        <div class="run-stats" aria-label="ラン情報">
+          <span>ターン <strong id="turn">1</strong></span>
+          <span>所持金 <strong id="gold">120</strong></span>
+          <span>図鑑 <strong id="dex-count">3</strong></span>
+        </div>
+      </header>
+
+      <section class="layout" aria-label="戦闘画面">
+        <aside class="panel team-panel">
+          <h2>味方チーム</h2>
+          <div class="hp-card">
+            <span>チームHP</span>
+            <strong><span id="team-hp">115</span> / <span id="team-max-hp">115</span></strong>
+            <div class="bar"><span id="team-hp-bar"></span></div>
+          </div>
+          <div class="energy-orb">
+            <span>エネルギー</span>
+            <strong><span id="energy">3</span>/3</strong>
+          </div>
+          <h3>編成中の虫 <small>3 / 3</small></h3>
+          <div id="bug-list" class="bug-list"></div>
+        </aside>
+
+        <section class="battlefield panel">
+          <div class="enemy-card">
+            <h2 id="enemy-name">巨大スズメバチ</h2>
+            <div class="bar enemy"><span id="enemy-hp-bar"></span></div>
+            <p><strong id="enemy-hp">150</strong> / <span id="enemy-max-hp">150</span></p>
+            <div class="enemy-art" role="img" aria-label="巨大な蜂の敵">🐝</div>
+            <div id="enemy-status" class="status-row"></div>
+          </div>
+
+          <div class="intent-board">
+            <h3>敵の行動（予告）</h3>
+            <ol id="intent-list"></ol>
+          </div>
+
+          <div class="hand-wrap">
+            <div id="hand" class="hand" aria-label="手札"></div>
+            <button id="end-turn" class="primary-button">ターン終了</button>
+          </div>
+        </section>
+
+        <aside class="panel build-panel">
+          <h2>虫編成</h2>
+          <div id="team-cards" class="team-cards"></div>
+          <h3>チーム効果</h3>
+          <ul id="team-effects" class="effect-list"></ul>
+          <h3>ステータス</h3>
+          <dl id="status-table" class="status-table"></dl>
+        </aside>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel reward-panel">
+          <h2>報酬選択</h2>
+          <p>戦闘に勝利すると、ビルド方針に合わせて1つ選択します。</p>
+          <div id="rewards" class="rewards"></div>
+        </article>
+
+        <article class="panel mod-panel">
+          <h2>虫改造</h2>
+          <div class="mod-content">
+            <div>
+              <h3>装着中パーツ</h3>
+              <ul id="mod-list" class="mod-list"></ul>
+            </div>
+            <div class="mod-bug-card">
+              <div class="large-bug">🪲</div>
+              <strong>ノコギリクワガタ</strong>
+              <span>HP 40 / きる +2</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel log-panel">
+          <h2>バトルログ</h2>
+          <ul id="log"></ul>
+        </article>
+
+        <article class="panel guide-panel">
+          <h2>ランの流れ</h2>
+          <div class="route">開始 → 戦闘 → 報酬 → 戦闘 → 報酬 → ボス</div>
+          <h3>このゲームの特徴</h3>
+          <ul>
+            <li>虫は戦闘に直接参加せず、カードとHPを支援します。</li>
+            <li>虫・カード・改造の組み合わせでシナジーを作ります。</li>
+            <li>チーム共有HPなので、虫が個別に死亡することはありません。</li>
+            <li>強さの持ち越しはなく、図鑑の発見だけが残ります。</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <script src="src/game.js"></script>
+  </body>
+</html>
